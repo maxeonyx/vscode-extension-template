@@ -1,6 +1,6 @@
 # VS Code Extension Template
 
-![VS Code Extension Template icon](icon.png)
+![VS Code Extension Template icon](./icon.png)
 
 A template for creating VS Code extensions with webviews.
 
