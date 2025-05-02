@@ -1,114 +1,55 @@
+# VS Code Extension Template
 
-# Better Replace-On-Save
+![VS Code Extension Template icon](icon.png)
 
-![Better Replace-On-Save icon](icon.png)
+A template for creating VS Code extensions with webviews.
 
-Replace-on-save with better VSCode integration.
+This extension provides a basic structure for a VS Code extension, including:
 
-This extension adds the ability to run regex replacements as a code action (it does not strictly have to be "on save")
+- A "Hello World" command.
+- A sidebar webview.
+- A custom editor webview.
 
-eg.
-
-```json
-{
-  // ...
-  "editor.codeActionsOnSave": {
-    "source.applyReplacements": true
-  },
-}
-```
+Use this as a starting point for your own VS Code extension development.
 
 ## Features
 
-### General Features
+- **Hello World Command**: A simple command accessible from the command palette (`VS Code Extension Template: Hello World`).
+- **Sidebar Webview**: A basic webview displayed in the activity bar.
+- **Custom Editor Webview**: A webview that opens for files with the `.template` extension.
 
-- `source.applyReplacements` CodeActions provider which can be used in the `editor.codeActionsOnSave` setting
-- Command `better-replace-on-save.applyReplacements` ("Apply Replacements") that can be executed from the command palette
-- Language-specific replacements that only apply to files of specified languages
-- Comprehensive settings documentation with VS Code IntelliSense support
+## Getting Started
 
-### ID-Based Replacements (New in 0.2.0)
+1. Clone this repository.
+2. Open the repository in VS Code.
+3. Press `F5` to run the extension in a new Extension Development Host window.
 
-- Configure replacements with unique IDs to apply them individually
-- Each ID-based replacement gets its own code action that can be used in `editor.codeActionsOnSave`
-- Command `better-replace-on-save.applySpecificReplacement` ("Apply Specific Replacement") to run a single replacement by ID
-- Context-aware language filtering:
-  - ID-based replacements respect language filters when run as code actions (on save)
-  - ID-based replacements ignore language filters when run as direct commands (giving you flexibility to override language constraints when needed)
+## Project Structure
 
-## Extension Settings
+- `src/extension.ts`: The main extension file where activation and contributions are registered.
+- `src/sidebarWebview.ts`: Implements the `WebviewViewProvider` for the sidebar webview.
+- `src/customEditor.ts`: Implements the `CustomEditorProvider` for the custom editor webview.
+- `media/index.html`: The HTML content for the webviews.
+- `package.json`: The extension manifest.
 
-Configure your replacements using the following settings:
+## Building and Packaging
 
-```json
-// settings.json
-{
-  // ...
-  "betterReplaceOnSave.replacements": [
-    {
-      "search": "hello",
-      "replace": "world"
-    },
-    {
-      "search": "let",
-      "replace": "const",
-      "languages": [ "typescript", "javascript" ] // Optional
-    },
-    {
-      "id": "convertPrint", // Optional: enables specific replacement functionality
-      "search": "print\\(",
-      "replace": "logger.info(",
-      "languages": [ "python" ] // Optional
-    }
-  ]
-  // ...
-}
-```
-
-### Applying Specific Replacements on Save
-
-You can configure VS Code to run only specific replacements on save:
-
-```json
-{
-  "editor.codeActionsOnSave": {
-    // Apply a specific replacement with ID "convertPrint"
-    "source.applyReplacements.convertPrint": true
-  }
-}
-```
-
-### Applying Specific Replacements Manually
-
-To apply a specific replacement manually:
-
-1. Open the command palette (`Ctrl+Shift+P` or `Cmd+Shift+P` on Mac)
-2. Search for "Apply Specific Replacement" 
-3. Select the replacement by ID from the dropdown
-
-This is particularly useful when you want to apply a replacement regardless of language restrictions.
-
-<!--
-## Known Issues
-
-Calling out known issues can help limit users opening duplicate issues against your extension.
--->
+- Compile the TypeScript source code: `npm run compile`
+- Watch for changes and compile automatically: `npm run watch`
+- Run tests: `npm test`
+- Package the extension: `vsce package`
+- Publish the extension: `vsce publish`
 
 ## Release Notes
 
-Users appreciate release notes as you update your extension.
-
 ### 0.1.0
 
-Initial release
+Initial release of the VS Code Extension Template.
 
-### 0.2.0
-
-Support for specific replacement code actions, and "Apply specific replacement" command.
-
-### 0.2.1
-
-- Added extension icon
+- Basic "Hello World" command.
+- Sidebar webview example.
+- Custom editor webview example.
+- Cleaned up from the original 'better-replace-on-save' extension.
 
 ---
 
